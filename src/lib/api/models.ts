@@ -1,6 +1,9 @@
 import DownloadModelOptions from "../lmstudio/models/operations/download/DownloadModelOptions";
 import DownloadModelResult from "../lmstudio/models/operations/download/DownloadModelResult";
+import ModelLoadOptions from "../lmstudio/models/operations/load/ModelLoadOptions";
+import ModelLoadResult from "../lmstudio/models/operations/load/ModelLoadResult";
 import LMStudioClient from "./lmstudio";
+
 export default class ModelClient {
     public constructor(
         private readonly client: Readonly<LMStudioClient>
@@ -22,4 +25,21 @@ export default class ModelClient {
             body: JSON.stringify(options),
         });
     }
+
+    
+    /** 
+     * Load an LLM or Embedding model into memory with custom configuration for inference
+     * 
+     * endpoint: /api/v1/models/load
+     * docs: https://lmstudio.ai/docs/developer/rest/load
+     * */
+    public load(
+        options: ModelLoadOptions
+    ): Promise<ModelLoadResult> {
+        return this.client.request("/api/v1/models/load", {
+            method: "POST",
+            body: JSON.stringify(options),
+        });
+    }
+
 }

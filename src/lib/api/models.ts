@@ -1,6 +1,6 @@
 import DownloadModelOptions from "../lmstudio/models/operations/download/DownloadModelOptions";
 import DownloadModelResult from "../lmstudio/models/operations/download/DownloadModelResult";
-import { ModelListResult } from "../lmstudio/models/operations/list/ModelListResult";
+import ModelListResult from "../lmstudio/models/operations/list/ModelListResult";
 import ModelLoadOptions from "../lmstudio/models/operations/load/ModelLoadOptions";
 import ModelLoadResult from "../lmstudio/models/operations/load/ModelLoadResult";
 import ModelUnloadOptions from "../lmstudio/models/operations/unload/ModelUnloadOptions";

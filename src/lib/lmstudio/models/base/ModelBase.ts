@@ -4,7 +4,7 @@ import ModelReasoningConfig from "./reasoning/ModelReasoningConfig";
 import ModelType from "./ModelType";
 import ModelFileFormat from "./ModelFileFormat";
 
-export interface ModelBase {
+type ModelBase = {
   /**
    * Type of model.
    */
@@ -69,3 +69,5 @@ export interface ModelBase {
    */
   selected_variant?: string;
 }
+
+export default ModelBase;

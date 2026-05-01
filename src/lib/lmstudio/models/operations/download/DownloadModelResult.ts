@@ -1,5 +1,5 @@
 
-export interface DownloadModelResult {
+type DownloadModelResult = {
     /** Unique identifier for the download job. Absent when status is already_downloaded. */
     job_id?: string;
     
@@ -15,3 +15,5 @@ export interface DownloadModelResult {
     /** Download start time in ISO 8601 format. Absent when status is already_downloaded. */
     started_at?: string;
 }
+
+export default DownloadModelResult;

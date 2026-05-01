@@ -2,8 +2,8 @@ import DownloadModelOptions from "../lmstudio/models/operations/download/Downloa
 import DownloadModelResult from "../lmstudio/models/operations/download/DownloadModelResult";
 import ModelLoadOptions from "../lmstudio/models/operations/load/ModelLoadOptions";
 import ModelLoadResult from "../lmstudio/models/operations/load/ModelLoadResult";
-import { ModelUnloadOptions } from "../lmstudio/models/operations/unload/ModelUnloadOptions";
-import { ModelUnloadResult } from "../lmstudio/models/operations/unload/ModelUnloadResult";
+import ModelUnloadOptions from "../lmstudio/models/operations/unload/ModelUnloadOptions";
+import ModelUnloadResult from "../lmstudio/models/operations/unload/ModelUnloadResult";
 import LMStudioClient from "./lmstudio";
 
 export default class ModelClient {

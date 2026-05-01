@@ -1,5 +1,6 @@
 import DownloadModelOptions from "../lmstudio/models/operations/download/DownloadModelOptions";
 import DownloadModelResult from "../lmstudio/models/operations/download/DownloadModelResult";
+import { ModelListResult } from "../lmstudio/models/operations/list/ModelListResult";
 import ModelLoadOptions from "../lmstudio/models/operations/load/ModelLoadOptions";
 import ModelLoadResult from "../lmstudio/models/operations/load/ModelLoadResult";
 import ModelUnloadOptions from "../lmstudio/models/operations/unload/ModelUnloadOptions";
@@ -57,5 +58,15 @@ export default class ModelClient {
             method: "POST",
             body: JSON.stringify(options),
         });
+    } 
+    
+    /** 
+     * Get a list of available models on your system, including both LLMs and embedding models.
+     * 
+     * endpoint: /api/v1/models
+     * docs: https://lmstudio.ai/docs/developer/rest/list
+     * */
+    public list(): Promise<ModelListResult> {
+        return this.client.request("/api/v1/models");
     }
 }

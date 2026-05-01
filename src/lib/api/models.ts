@@ -2,6 +2,8 @@ import DownloadModelOptions from "../lmstudio/models/operations/download/Downloa
 import DownloadModelResult from "../lmstudio/models/operations/download/DownloadModelResult";
 import ModelLoadOptions from "../lmstudio/models/operations/load/ModelLoadOptions";
 import ModelLoadResult from "../lmstudio/models/operations/load/ModelLoadResult";
+import { ModelUnloadOptions } from "../lmstudio/models/operations/unload/ModelUnloadOptions";
+import { ModelUnloadResult } from "../lmstudio/models/operations/unload/ModelUnloadResult";
 import LMStudioClient from "./lmstudio";
 
 export default class ModelClient {
@@ -41,5 +43,19 @@ export default class ModelClient {
             body: JSON.stringify(options),
         });
     }
-
+    
+    /** 
+     * Unload a loaded model from memory
+     * 
+     * endpoint: /api/v1/models/unload 
+     * docs: https://lmstudio.ai/docs/developer/rest/unload
+     * */
+    public unload(
+        options: ModelUnloadOptions
+    ): Promise<ModelUnloadResult> {
+        return this.client.request("/api/v1/models/unload", {
+            method: "POST",
+            body: JSON.stringify(options),
+        });
+    }
 }

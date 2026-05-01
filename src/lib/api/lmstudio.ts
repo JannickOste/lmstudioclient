@@ -1,9 +1,16 @@
+import ChatClient from "./chat";
+import ModelClient from "./models";
 
 export default class LMStudioClient {
+    private readonly modelClient: Readonly<ModelClient>;
+    private readonly chatClient: Readonly<ChatClient>; 
+
     public constructor(
         public readonly baseUrl: Readonly<string> = "http://localhost:1234"
     ) {
 
+        this.modelClient = new ModelClient(this);
+        this.chatClient = new ChatClient(this);
     }
 
 

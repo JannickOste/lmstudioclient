@@ -229,7 +229,3 @@ npm run build
 ```
 
 The compiled JavaScript and TypeScript declarations are emitted to `dist`.
-
-## License
-
-ISC

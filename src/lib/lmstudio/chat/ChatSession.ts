@@ -63,6 +63,10 @@ class ChatSession {
         });
 
         this.previous_message_id = response.response_id ?? null;
+        this._chatHistory.push(
+            input, 
+            ... response.output
+        )
 
         return response;
     }

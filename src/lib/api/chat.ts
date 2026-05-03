@@ -76,7 +76,7 @@ export default class ChatClient {
      * @returns A new `ChatSession` instance configured with the provided options.
      */
     public getSession(
-        options: Omit<SendMessageOptions, "store" | "previous_response_id"> | Omit<SendMessageOptions, "store" | "previous_response_id" | "model">
+        options: Omit<SendMessageOptions, "store" | "previous_response_id" | "input"> | Omit<SendMessageOptions, "store" | "previous_response_id" | "input" | "model">
     ): ChatSession {
         return new ChatSession(this, {
             ...options,

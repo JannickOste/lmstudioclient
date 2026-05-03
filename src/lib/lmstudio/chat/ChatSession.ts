@@ -37,7 +37,7 @@ class ChatSession {
      */
     public constructor(
         private readonly client: Readonly<ChatClient>,
-        private readonly chatOptions: Readonly<Omit<SendMessageOptions, "store">>
+        private readonly chatOptions: Readonly<Omit<SendMessageOptions, "store" | "input" | "previous_message_id">>
     ) {}
 
     /**

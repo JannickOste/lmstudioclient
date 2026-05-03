@@ -14,7 +14,8 @@ export default class LMStudioClient {
     private authorizationToken: JWTAuthorizationToken | null = null;
 
     public constructor(
-        public readonly baseUrl: Readonly<string> = "http://localhost:1234"
+        public readonly baseUrl: Readonly<string> = "http://localhost:1234",
+        public readonly defaultModel: Readonly<string> = "qwen2.5-7b-instruct"
     ) {
         this.model = new ModelClient(this);
         this.chat = new ChatClient(this);

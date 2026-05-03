@@ -4,6 +4,7 @@ export { default as ChatClient } from "./lib/api/chat";
 export { default as LMStudioClient } from "./lib/api/lmstudio";
 export { default as ModelClient } from "./lib/api/models";
 
+export { default as ChatSession } from "./lib/lmstudio/chat/ChatSession";
 export type { default as ChatIOItem } from "./lib/lmstudio/chat/io/ChatIOItem";
 export type { default as ChatImageMessage } from "./lib/lmstudio/chat/io/input/ChatImageMessage";
 export type { default as ChatInputItem } from "./lib/lmstudio/chat/io/input/ChatInputItem";

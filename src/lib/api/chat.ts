@@ -31,4 +31,29 @@ export default class ChatClient {
             body: JSON.stringify(finalOptions)
         });
     }
+    
+    /**
+     * Sends a one-off (stateless) chat request to the model.
+     *
+     * This method ensures the request is not stored by LM Studio (`store: false`),
+     * making it suitable for temporary interactions where conversation history
+     * should not be persisted.
+     *
+     * @param input - The chat input items (messages, system prompts, etc.)
+     * @param options - Optional request configuration (temperature, top_p, model, etc.)
+     *
+     * @returns The model's response
+     */
+    public sendStateless(
+        input: ChatInputItem[],
+        options: Partial<Omit<SendMessageOptions, "store" | "previous_response_id">> = {}
+    ): Promise<SendMessageResult> {
+        const finalOptions: SendMessageOptions | Omit<SendMessageOptions, "model"> = {
+            ...options,
+            input,
+            store: false
+        };
+
+        return this.send(finalOptions);
+    }
 }

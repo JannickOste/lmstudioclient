@@ -2,10 +2,11 @@ import ChatSession from "../lmstudio/chat/ChatSession";
 import ChatInputItem from "../lmstudio/chat/io/input/ChatInputItem";
 import SendMessageOptions from "../lmstudio/chat/operations/sendMessage/SendMessageOptions";
 import SendMessageResult from "../lmstudio/chat/operations/sendMessage/SendMessageResult";
+import LMStudioConnection from "../lmstudio/connection";
 import LMStudioClient from "./lmstudio";
 export default class ChatClient {
     public constructor(
-        private readonly client: Readonly<LMStudioClient>
+        private readonly connection: Readonly<LMStudioConnection>
     ) {
 
     }
@@ -24,10 +25,10 @@ export default class ChatClient {
             ...options,
             model: "model" in options
                 ? options.model
-                : this.client.defaultModel
+                : this.connection.defaultModel
         };
 
-        return this.client.jsonRequest("/api/v1/chat", {
+        return this.connection.jsonRequest("/api/v1/chat", {
             method: "POST",
             body: JSON.stringify(finalOptions)
         });
@@ -80,7 +81,7 @@ export default class ChatClient {
     ): ChatSession {
         return new ChatSession(this, {
             ...options,
-            model: "model" in options ? options.model : this.client.defaultModel
+            model: "model" in options ? options.model : this.connection.defaultModel
         })
     }
 }

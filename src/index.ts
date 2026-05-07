@@ -1,9 +1,11 @@
 import LMStudioClient from "./lib/api/lmstudio";
 
 export { default as ChatClient } from "./lib/api/chat";
+export { default as LMStudioConnection } from "./lib/lmstudio/connection";
 export { default as LMStudioClient } from "./lib/api/lmstudio";
 export { default as ModelClient } from "./lib/api/models";
 
+export type { default as JWTAuthorizationToken } from "./lib/lmstudio/auth/JWTAuthorizationToken";
 export { default as ChatSession } from "./lib/lmstudio/chat/ChatSession";
 export type { default as ChatIOItem } from "./lib/lmstudio/chat/io/ChatIOItem";
 export type { default as ChatImageMessage } from "./lib/lmstudio/chat/io/input/ChatImageMessage";

@@ -5,11 +5,11 @@ import ModelLoadOptions from "../lmstudio/models/operations/load/ModelLoadOption
 import ModelLoadResult from "../lmstudio/models/operations/load/ModelLoadResult";
 import ModelUnloadOptions from "../lmstudio/models/operations/unload/ModelUnloadOptions";
 import ModelUnloadResult from "../lmstudio/models/operations/unload/ModelUnloadResult";
-import LMStudioClient from "./lmstudio";
+import LMStudioConnection from "../lmstudio/connection";
 
 export default class ModelClient {
     public constructor(
-        private readonly client: Readonly<LMStudioClient>
+        private readonly connection: Readonly<LMStudioConnection>
     ) {
 
     }
@@ -23,7 +23,7 @@ export default class ModelClient {
     public download(
         options: DownloadModelOptions
     ): Promise<DownloadModelResult> {
-        return this.client.jsonRequest("/api/v1/models/download", {
+        return this.connection.jsonRequest("/api/v1/models/download", {
             method: "POST",
             body: JSON.stringify(options),
         });
@@ -39,7 +39,7 @@ export default class ModelClient {
     public load(
         options: ModelLoadOptions
     ): Promise<ModelLoadResult> {
-        return this.client.jsonRequest("/api/v1/models/load", {
+        return this.connection.jsonRequest("/api/v1/models/load", {
             method: "POST",
             body: JSON.stringify(options),
         });
@@ -54,7 +54,7 @@ export default class ModelClient {
     public unload(
         options: ModelUnloadOptions
     ): Promise<ModelUnloadResult> {
-        return this.client.jsonRequest("/api/v1/models/unload", {
+        return this.connection.jsonRequest("/api/v1/models/unload", {
             method: "POST",
             body: JSON.stringify(options),
         });
@@ -67,6 +67,6 @@ export default class ModelClient {
      * docs: https://lmstudio.ai/docs/developer/rest/list
      * */
     public list(): Promise<ModelListResult> {
-        return this.client.jsonRequest("/api/v1/models");
+        return this.connection.jsonRequest("/api/v1/models");
     }
 }

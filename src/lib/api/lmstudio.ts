@@ -21,18 +21,23 @@ export default class LMStudioClient {
         this.chat = new ChatClient(this);
     }
 
-
     /**
-     * Make a request to the LMStudio REST API. Automatically prepends the baseUrl and sets the Content-Type header to application/json.
-     * @param path the path of the API endpoint, e.g. "/api/v1/models"
-     * @param options the request options, same as the second argument to fetch, except the headers will be automatically set to include "Content-Type: application/json"
-     * @returns APIResponse of type T
+     * Performs a raw HTTP request against the LM Studio REST API.
+     *
+     * Automatically:
+     * - Prepends the configured base URL
+     * - Sets `Content-Type: application/json`
+     * - Adds the `Authorization` header when a JWT token is configured
+     *
+     * @param path API endpoint path, e.g. `/api/v1/models`
+     * @param options Standard fetch request options
+     * @returns The raw fetch Response object
      */
-    public async request<T>(
+    public request(
         path: string,
         options?: RequestInit
-    ): Promise<T> {
-        const res = await fetch(`${this.baseUrl}${path}`, {
+    ): Promise<Response> {
+        return fetch(`${this.baseUrl}${path}`, {
             headers: {
                 "Content-Type": "application/json",
                 ... this.authorizationToken ? {
@@ -41,7 +46,30 @@ export default class LMStudioClient {
                 ...(options?.headers || {})
             },
             ...options
-        });
+        });;
+    }
+
+    /**
+     * Performs an HTTP request against the LM Studio REST API
+     * and parses the response body as JSON.
+     *
+     * Automatically:
+     * - Prepends the configured base URL
+     * - Sets `Content-Type: application/json`
+     * - Adds the `Authorization` header when a JWT token is configured
+     * - Throws an Error when the response status is not successful
+     *
+     * @template T Expected JSON response type
+     * @param path API endpoint path, e.g. `/api/v1/models`
+     * @param options Standard fetch request options
+     * @returns Parsed JSON response of type `T`
+     * @throws Error when the request fails
+     */
+    public async jsonRequest<T>(
+        path: string,
+        options?: RequestInit
+    ): Promise<T> {
+        const res = await this.request(path, options)
 
         if (!res.ok) {
             throw new Error(`Request failed: ${res.status} ${res.statusText}`);

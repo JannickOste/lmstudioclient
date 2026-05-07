@@ -27,7 +27,7 @@ export default class ChatClient {
                 : this.client.defaultModel
         };
 
-        return this.client.request("/api/v1/chat", {
+        return this.client.jsonRequest("/api/v1/chat", {
             method: "POST",
             body: JSON.stringify(finalOptions)
         });

@@ -23,7 +23,7 @@ export default class ModelClient {
     public download(
         options: DownloadModelOptions
     ): Promise<DownloadModelResult> {
-        return this.client.request("/api/v1/models/download", {
+        return this.client.jsonRequest("/api/v1/models/download", {
             method: "POST",
             body: JSON.stringify(options),
         });
@@ -39,7 +39,7 @@ export default class ModelClient {
     public load(
         options: ModelLoadOptions
     ): Promise<ModelLoadResult> {
-        return this.client.request("/api/v1/models/load", {
+        return this.client.jsonRequest("/api/v1/models/load", {
             method: "POST",
             body: JSON.stringify(options),
         });
@@ -54,7 +54,7 @@ export default class ModelClient {
     public unload(
         options: ModelUnloadOptions
     ): Promise<ModelUnloadResult> {
-        return this.client.request("/api/v1/models/unload", {
+        return this.client.jsonRequest("/api/v1/models/unload", {
             method: "POST",
             body: JSON.stringify(options),
         });
@@ -67,6 +67,6 @@ export default class ModelClient {
      * docs: https://lmstudio.ai/docs/developer/rest/list
      * */
     public list(): Promise<ModelListResult> {
-        return this.client.request("/api/v1/models");
+        return this.client.jsonRequest("/api/v1/models");
     }
 }
